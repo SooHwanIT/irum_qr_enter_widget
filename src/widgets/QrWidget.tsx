@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexWidget, TextWidget } from 'react-native-android-widget';
+import {FlexWidget, TextWidget} from 'react-native-android-widget';
 
 export function QrWidget() {
   return (
@@ -11,8 +11,7 @@ export function QrWidget() {
         alignItems: 'center',
         backgroundColor: '#ffffff',
         borderRadius: 16,
-      }}
-    >
+      }}>
       <TextWidget
         text="Hello"
         style={{

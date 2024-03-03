@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:minWidth="320dp"
+                    android:minHeight="120dp"
+
+                    android:updatePeriodMillis="0"
+
+                    android:initialLayout="@layout/rn_widget"
+
+                    android:previewImage="@drawable/qr_widget_preview"
+                    android:description="@string/qr_widget_description"
+
+                    android:resizeMode="none"
+
+
+                    android:configure="com.irum_qr_enter_widget.WidgetConfigurationActivity"
+                    android:widgetFeatures="reconfigurable"
+
+                    android:widgetCategory="home_screen">
+</appwidget-provider>
