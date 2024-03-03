@@ -12,9 +12,5 @@
 
                     android:resizeMode="none"
 
-
-                    android:configure="com.irum_qr_enter_widget.WidgetConfigurationActivity"
-                    android:widgetFeatures="reconfigurable"
-
                     android:widgetCategory="home_screen">
 </appwidget-provider>
