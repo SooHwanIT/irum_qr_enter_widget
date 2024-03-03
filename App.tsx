@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Qr">
+      <Stack.Navigator initialRouteName="Main">
         <Stack.Screen
           name="Main"
           component={MainScreen}
