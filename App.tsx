@@ -4,12 +4,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from "./src/screens/LoginScreen.tsx";
 import MainScreen from "./src/screens/MainScreen.tsx";
 import QrWidgetPreview from "./src/screens/QrWidgetPreview.tsx";
-
+import mobileAds from 'react-native-google-mobile-ads';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-  return (
+    mobileAds()
+        .initialize()
+        .then(adapterStatuses => {
+            // Initialization complete!
+        });
+
+    return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Main">
         <Stack.Screen
@@ -17,7 +23,7 @@ function App() {
           component={MainScreen}
           options={{ headerShown: false }} // 헤더 숨기기
         />
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}r    />
         <Stack.Screen name="Qr" component={QrWidgetPreview} />
 
       </Stack.Navigator>

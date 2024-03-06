@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import QRCode from 'react-native-qrcode-svg';
 import { getMemberInfo } from '../utils/getMemberInfo';
 import { login } from "../utils/Login.tsx";
+import Admob from "../utils/Admob.tsx";
 
 const MainScreen = ({ navigation, route }) => {
   const routeToken = route.params?.token || null;
@@ -60,6 +61,7 @@ const MainScreen = ({ navigation, route }) => {
           <Text style={styles.buttonText}>새로고침</Text>
         </TouchableOpacity>
       </View>
+      <Admob />
     </View>
   );
 };
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     padding: 20,
-    marginBottom: 90,
+    marginBottom: 180,
     marginTop: 150,
     width: '90%',
     height: '85%',

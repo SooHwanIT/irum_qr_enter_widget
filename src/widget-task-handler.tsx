@@ -17,11 +17,11 @@ export async function widgetTaskHandler(props: WidgetTaskHandlerProps) {
 
   switch (props.widgetAction) {
     case 'WIDGET_ADDED':
-      props.renderWidget(<Widget text={""}/>);
+      props.renderWidget(<Widget text={""} state={null}/>);
       break;
 
     case 'WIDGET_UPDATE':
-      // Not needed for now
+      props.renderWidget(<Widget text={""} state={null}/>);
       break;
 
     case 'WIDGET_RESIZED':
@@ -40,16 +40,24 @@ export async function widgetTaskHandler(props: WidgetTaskHandlerProps) {
         const studentId = await AsyncStorage.getItem('studentId');
         const password = await AsyncStorage.getItem('password');
         console.log(studentId)
-
         if (studentId && password) {
-          // 로그인을 시도하고 토큰을 얻어옵니다.
-          const token = await login(studentId, password);
-          // 토큰을 이용하여 회원 정보를 얻어옵니다.
-          const membershipInfo = await getMemberInfo(token);
-          // 얻어온 회원 정보를 Widget으로 전달합니다.
-          props.renderWidget(<Widget text={membershipInfo}/>);
-        }else{
-          props.renderWidget(<Widget text={""}/>);
+          try {
+            // 로그인을 시도하고 토큰을 얻어옵니다.
+            props.renderWidget(<Widget text="" state={"로그인 시도 중"} isLoading={true}/>);
+            const token = await login(studentId, password);
+
+            // 토큰을 이용하여 회원 정보를 얻어옵니다.
+            props.renderWidget(<Widget text="" state={"QR 정보 불러오는 중"} isLoading={true}/>);
+            const membershipInfo = await getMemberInfo(token);
+
+            // 얻어온 회원 정보를 Widget으로 전달합니다.
+            props.renderWidget(<Widget text={membershipInfo} state={null} isLoading={false}/>);
+          } catch (error) {
+            // 에러가 발생하면 에러 메시지를 Widget으로 전달합니다.
+            props.renderWidget(<Widget text={""} state={"인터넷 연결 안됨"} isLoading={true}/>);
+          }
+        } else {
+          props.renderWidget(<Widget text={""} state={"로그인 안됨"} isLoading={false}/>);
         }
       }
       // Not needed for now

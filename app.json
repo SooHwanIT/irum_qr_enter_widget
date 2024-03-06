@@ -1,4 +1,8 @@
 {
   "name": "irum_qr_enter_widget",
-  "displayName": "irum_qr_enter_widget"
+  "displayName": "irum_qr_enter_widget",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-9011101777574758~3000153499",
+    "ios_app_id": "ca-app-pub-9011101777574758~7500944780"
+  }
 }

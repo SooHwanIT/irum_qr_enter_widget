@@ -3,12 +3,16 @@ import {FlexWidget, ImageWidget, TextWidget} from 'react-native-android-widget';
 
 interface QrWidgetProps {
     text: string;
+    state:string|null;
+    isLoading : boolean;
 }
 
-export const QrWidget: React.FC<QrWidgetProps> = ({text}) => {
+export const QrWidget: React.FC<QrWidgetProps> = ({text,state, isLoading}) => {
 
   return (
     <FlexWidget
+        clickAction={isLoading ? "OPEN_APP" : "refresh"}
+        clickActionData={{ id: 0 }}
       style={{
         height: 'match_parent',
         width: 'match_parent',
@@ -31,15 +35,21 @@ export const QrWidget: React.FC<QrWidgetProps> = ({text}) => {
             />
         )}
         <TextWidget
-            text="새로고침"
-            clickAction="refresh"
-            clickActionData={{ id: 0 }}
+            text={state ? state : "새로고침"}
             style={{
                 fontSize: 32,
                 fontFamily: 'Inter',
                 color: '#000000',
             }}
         />
+        {isLoading && <TextWidget
+            text="로딩중 클릭시 앱 실행"
+            style={{
+                fontSize:12,
+                fontFamily: 'Inter',
+                color: '#000000',
+            }}
+        />}
     </FlexWidget>
   );
 }

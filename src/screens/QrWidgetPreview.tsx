@@ -8,7 +8,7 @@ import {QrWidget} from '../widgets/QrWidget.tsx';
   return (
     <View style={styles.container}>
       <WidgetPreview
-        renderWidget={() => <QrWidget />}
+        renderWidget={() => <QrWidget  text={""} state={"null"}/>}
         width={320}
         height={200}
       />

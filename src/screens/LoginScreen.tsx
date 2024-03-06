@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import {View, Text, TextInput, Button, StyleSheet, Linking, TouchableOpacity} from 'react-native';
 import { login } from '../utils/Login.tsx';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Admob from "../utils/Admob.tsx";
 
 const LoginScreen = () => {
-  const [studentId, setStudentId] = useState<string>('20230154');
-  const [password, setPassword] = useState<string>('ghks3691***');
+  const [studentId, setStudentId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -21,7 +22,9 @@ const LoginScreen = () => {
     };
     fetchStoredCredentials();
   }, []); // componentDidMount와 같은 역할을 수행
-
+  const handlePress = () => {
+    Linking.openURL('https://github.com/SooHwanIT');
+  };
   const handleLogin = async (studentId: string, password: string) => {
     try {
       const token = await login(studentId, password);
@@ -37,23 +40,31 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>로그인 페이지</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setStudentId}
-        value={studentId}
-        placeholder="아이디"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setPassword}
-        value={password}
-        placeholder="비밀번호"
-        secureTextEntry
-      />
-      <Button title="로그인" onPress={() => handleLogin(studentId, password)} />
-    </View>
+      <View style={styles.container}>
+        <Text style={[styles.title, {color: 'black'}]}>로그인 페이지</Text>
+        <TextInput
+            style={[styles.input, {color: 'black'}]}
+            onChangeText={setStudentId}
+            value={studentId}
+            placeholder="학번"
+            placeholderTextColor="black"
+        />
+        <TextInput
+            style={[styles.input, {color: 'black'}]}
+            onChangeText={setPassword}
+            value={password}
+            placeholder="비밀번호"
+            placeholderTextColor="black"
+            secureTextEntry
+        />
+        <Button title="로그인" onPress={() => handleLogin(studentId, password)} color="black" />
+        <TouchableOpacity style={styles.TouchableOpacity} onPress={handlePress}>
+          <Text style={{color: 'black'}}>
+            Made by github.com/SooHwanIT
+          </Text>
+        </TouchableOpacity>
+        <Admob />
+      </View>
   );
 };
 
@@ -76,6 +87,10 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     marginBottom: 10,
   },
+  TouchableOpacity:{
+    position:"absolute",
+    bottom:100,
+  }
 });
 
 export default LoginScreen;
