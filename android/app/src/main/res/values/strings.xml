@@ -1,4 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">학산 원터치 QR</string>
-    <string name="qr_widget_description" translatable="false">This is qr widget</string>
+    <string name="qr_widget_description" translatable="false">QR 코드 위젯입니다</string>
 </resources>

@@ -21,19 +21,33 @@ export const QrWidget: React.FC<QrWidgetProps> = ({text,state, isLoading}) => {
         backgroundColor: '#ffffff',
         borderRadius: 16,
       }}>
+        <FlexWidget
+            style={{
+                    height: 'wrap_content',
+                    width: 'match_parent',
+                    justifyContent: 'center',
+                    alignItems: 'center'}}>
         {text ? (
             <ImageWidget
                 image={`https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${text}`}
-                imageWidth={200}
-                imageHeight={200}
+                imageWidth={240}
+                imageHeight={240}
             />
         ) : (
             <ImageWidget
                 image={require('../assets/img/refresh.png')} // 새로고침 이미지 파일의 경로를 적절하게 수정하세요
-                imageWidth={200}
-                imageHeight={200}
+                imageWidth={240}
+                imageHeight={240}
             />
         )}
+        </FlexWidget>
+        <FlexWidget
+            style={{
+                height: 'wrap_content',
+                width: 'match_parent',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop:20,}}>
         <TextWidget
             text={state ? state : "새로고침"}
             style={{
@@ -50,6 +64,7 @@ export const QrWidget: React.FC<QrWidgetProps> = ({text,state, isLoading}) => {
                 color: '#000000',
             }}
         />}
+        </FlexWidget>
     </FlexWidget>
   );
 }

@@ -17,29 +17,32 @@ export async function widgetTaskHandler(props: WidgetTaskHandlerProps) {
 
   switch (props.widgetAction) {
     case 'WIDGET_ADDED':
-      props.renderWidget(<Widget text={""} state={null}/>);
+      props.renderWidget(<Widget text={""} state={null} isLoading={false}/>);
       break;
 
     case 'WIDGET_UPDATE':
-      props.renderWidget(<Widget text={""} state={null}/>);
+      props.renderWidget(<Widget text={""} state={null} isLoading={false}/>);
       break;
 
     case 'WIDGET_RESIZED':
-      // Not needed for now
+      props.renderWidget(<Widget text={""} state={null} isLoading={false}/>);
       break;
 
     case 'WIDGET_DELETED':
-      // Not needed for now
       break;
 
     case 'WIDGET_CLICK':
-
       if (props.clickAction === 'refresh') {
-        console.log("ss")
         // AsyncStorage에서 아이디와 비밀번호를 얻어옵니다.
+
+        const tokenTime = await AsyncStorage.getItem('tokenTime');
+        if(tokenTime){
+          const membershipInfo = await AsyncStorage.getItem('token');
+          props.renderWidget(<Widget text={membershipInfo? membershipInfo : ''} state={null} isLoading={false}/>);
+          return;
+        }
         const studentId = await AsyncStorage.getItem('studentId');
         const password = await AsyncStorage.getItem('password');
-        console.log(studentId)
         if (studentId && password) {
           try {
             // 로그인을 시도하고 토큰을 얻어옵니다.
